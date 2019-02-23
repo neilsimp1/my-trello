@@ -4,13 +4,17 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build:macos": "electron-packager . trello  --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=trello.png && cd dist/trello-darwin-x64 && zip -ryXq9 ../Trello-osx-${npm_package_version}.zip Trello.app",
+    "build:linux": "electron-packager . trello --overwrite --out=dist --prune --platform=linux --arch=x64 --icon=trello.png && cd dist/trello-linux-x64/ && zip -ryq9 ../trello-linux-${npm_package_version}.zip *",
+    "build:windows": "electron-packager . trello --overwrite --asar --out=dist --prune --platform=win32 --arch=ia32 --icon=trello.png && cd dist/trello-win32-ia32 && zip -ryq9 ../Trello-windows-${npm_package_version}.zip *"
   },
   "repository": "https://github.com/neilsimp1/my-trello",
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^4.0.5"
+    "electron": "^4.0.5",
+    "electron-packager": "^13.1.0"
   },
   "dependencies": {
     "electron-config": "^2.0.0"
