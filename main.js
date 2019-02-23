@@ -1,7 +1,8 @@
 const { app, BrowserWindow, Menu, Tray } = require('electron');
-
 const path = require('path');
 const url = require('url');
+
+const iconPath = path.join(__dirname, 'trello.png');
 
 let mainWindow;
 let tray;
@@ -11,22 +12,20 @@ function createWindow() {
 		width: 800,
 		height: 600,
 		title: 'Trello',
-		icon: 'trello.png'
+		icon: iconPath
 	});
 	mainWindow.setMenu(null);
 
-	tray = new Tray('trello.png');
+	tray = new Tray(iconPath);
 	tray.setToolTip('Trello');
 	tray.setContextMenu(Menu.buildFromTemplate([
 		{
-			label: 'Show',
-			click: () => { mainWindow.restore(); }
+			label: 'Show', click: () => { mainWindow.show(); }
 		},
 		{
-			label: 'Exit',
-			click: () => {
+			label: 'Exit', click: () => {
 				app.isQuiting = true;
-				app.quit();
+				exit();
 			}
 		}
 	]));
@@ -37,15 +36,33 @@ function createWindow() {
 		slashes: true
 	}));
 
+	mainWindow.on('minimize', (event) => {
+		event.preventDefault();
+		mainWindow.hide();
+  });
+
+	mainWindow.on('close', (event) => {
+		if (!app.isQuitting) {
+			event.preventDefault();
+			mainWindow.hide();
+		}
+	});
+
 	mainWindow.on('closed', () => {
 		mainWindow = null;
 	});
 }
 
+function exit() {
+	tray.destroy();
+	mainWindow.destroy();
+	app.quit();
+}
+
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-	if(process.platform !== 'darwin') app.quit();
+	if (process.platform !== 'darwin') exit();
 });
 
 app.on('activate', () => {
