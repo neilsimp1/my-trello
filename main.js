@@ -14,7 +14,6 @@ function createWindow() {
 		title: 'Trello',
 		icon: iconPath
 	});
-	mainWindow.setMenu(null);
 
 	tray = new Tray(iconPath);
 	tray.setToolTip('Trello');
@@ -63,6 +62,10 @@ function exit() {
 }
 
 app.on('ready', createWindow);
+
+app.on('browser-window-created', (event, mainWindow) => {
+	mainWindow.setMenuBarVisibility(false);
+});
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') exit();
