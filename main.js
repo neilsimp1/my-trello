@@ -29,6 +29,9 @@ function createWindow() {
 			}
 		}
 	]));
+	tray.on('click', () => {
+		mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+	});
 
 	mainWindow.loadURL(url.format({
 		pathname: path.join(__dirname, 'index.html'),
