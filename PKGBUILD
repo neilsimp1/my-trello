@@ -21,12 +21,12 @@ build() {
 }
 
 package() {
-    cd "$srcdir"/$pkgname-$pkgver/dist/
+    cd "$srcdir"/$pkgname-$pkgver/dist/trello-linux-x64
     install -dm755 "$pkgdir"/usr/lib
-    install -Dm644 $pkgname-$pkgver/LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
-    install -Dm644 $pkgname-$pkgver/trello.png "$pkgdir"/usr/share/pixmaps/trello.png
+    install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+    install -Dm644 resources/app/trello.png "$pkgdir"/usr/share/pixmaps/trello.png
     rm -rf $pkgname-$pkgver/{LICENSE}
-    mv $pkgname-$pkgver "$pkgdir"/usr/lib/trello
+    mv * "$pkgdir"/usr/lib/trello
     install -Dm755 trello "$pkgdir"/usr/bin/trello
     install -Dm644 trello.desktop "$pkgdir"/usr/share/applications/trello.desktop
 }
