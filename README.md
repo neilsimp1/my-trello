@@ -1,3 +1,6 @@
+# my-trello
+## Yet another Trello Electron app
+
 # Installation
 
 ```
@@ -6,3 +9,5 @@ cd my-trello
 npm install
 npm start
 ```
+
+Arch Linux PKGBUILD available in a separate branch
