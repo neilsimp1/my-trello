@@ -1,7 +1,7 @@
 # my-trello
 ## Yet another Trello Electron app
 
-# Installation
+### Installation
 
 ```
 git clone https://github.com/neilsimp1/my-trello.git
