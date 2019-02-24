@@ -5,9 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build:macos": "electron-packager . trello  --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=trello.png && cd dist/trello-darwin-x64 && zip -ryXq9 ../Trello-osx-${npm_package_version}.zip Trello.app",
-    "build:linux": "electron-packager . trello --overwrite --out=dist --prune --platform=linux --arch=x64 --icon=trello.png && cd dist/trello-linux-x64/ && zip -ryq9 ../trello-linux-${npm_package_version}.zip *",
-    "build:windows": "electron-packager . trello --overwrite --asar --out=dist --prune --platform=win32 --arch=ia32 --icon=trello.png && cd dist/trello-win32-ia32 && zip -ryq9 ../Trello-windows-${npm_package_version}.zip *"
+    "build:macos": "electron-packager . trello  --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=trello.png",
+    "build:linux": "electron-packager . trello --overwrite --out=dist --prune --platform=linux --arch=x64 --icon=trello.png",
+    "build:windows": "electron-packager . trello --overwrite --asar --out=dist --prune --platform=win32 --arch=ia32 --icon=trello.png"
   },
   "repository": "https://github.com/neilsimp1/my-trello",
   "author": "GitHub",
